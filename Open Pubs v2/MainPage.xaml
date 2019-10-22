@@ -5,10 +5,205 @@
     xmlns:local="using:Open_Pubs_v2"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:my="using:Windows.UI.Xaml.Controls.Maps"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
+    <Page.Resources>
+        <BitmapImage x:Key="DarkMode" UriSource="ms-appx:///images/OpenPubsLogo_Dark.png"/>
+        <BitmapImage x:Key="LightMode" UriSource="ms-appx:///images/OpenPubsLogo_Light.png"/>
+    </Page.Resources>
 
-    </Grid>
+    <SplitView x:Name="SplitMenu" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <SplitView.Pane>
+            <Grid>
+                <Grid Height="120" VerticalAlignment="Top">
+                    <Image x:Name="imgLogo" HorizontalAlignment="Stretch" Height="100" Margin="0,0,0,0" VerticalAlignment="Stretch" Source="OpenPubsLogo_Dark.png" />
+                </Grid>
+                <StackPanel Margin="0,120,0,0">
+                    <Grid Height="50">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button x:Name="btnExpandOther" Content="+" Grid.ColumnSpan="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontSize="24" Padding="0,0,0,0" Background="Transparent"/>
+                        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Text="Other Stuff" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="24" Margin="30,0,0,0"/>
+                    </Grid>
+                </StackPanel>
+                <StackPanel x:Name="_otherstuff" Visibility="Visible" Margin="0,170,0,0">
+                    <Grid Height="50">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button x:Name="btnAboutMenu" Content="&#xE897;" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontFamily="Segoe MDL2 Assets" FontSize="20" Background="#0CFFFFFF" Padding="0,0,0,0" />
+                        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Text="About App" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="24" Margin="20,0,0,0"/>
+                    </Grid>
+                    <Grid Height="50">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button x:Name="btnLibraryMenu" Content="&#xE8F1;" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" FontFamily="Segoe MDL2 Assets" FontSize="20" Background="#0CFFFFFF" Padding="0,0,0,0" />
+                        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Text="3rd Party Libraries" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="24" Margin="20,0,0,0"/>
+                    </Grid>
+                    <Grid Height="50">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button x:Name="btnDevMenu" Content="&#xEC7A;" HorizontalAlignment="Stretch" VerticalAlignment="Top" FontFamily="Segoe MDL2 Assets" FontSize="20" Background="#0CFFFFFF" Padding="0,0,0,0" Height="50" Margin="0,0,0,0" />
+                        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Text="What's New" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="24" Margin="20,0,0,0"/>
+                    </Grid>
+                    <Grid Height="50">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button x:Name="btnQuitApp" Content="&#xE7E8;" HorizontalAlignment="Stretch" VerticalAlignment="Top" FontFamily="Segoe MDL2 Assets" FontSize="20" Background="#0CFFFFFF" Padding="0,0,0,0" Height="50" Margin="0,0,0,0" />
+                        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Text="Exit App" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="24" Margin="20,0,0,0"/>
+                    </Grid>
+                </StackPanel>
+                <Grid VerticalAlignment="Bottom" Height="25" Margin="0,0,0,10" HorizontalAlignment="Center">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Made with " TextWrapping="Wrap" FontSize="16" />
+                        <TextBlock Text=" &#xEB52; " TextWrapping="Wrap" FontSize="16" Foreground="#FFF01C1C" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center" />
+                        <TextBlock Text=" in the UK" TextWrapping="Wrap" FontSize="16" />
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </SplitView.Pane>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="48"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="48"/>
+            </Grid.RowDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="txtTest" HorizontalAlignment="Center" Text="Open Pubs" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="20" Grid.Column="2" Grid.ColumnSpan="7" />
+                <Button x:Name="btnMenu" Content="&#xE700;" Grid.ColumnSpan="1" HorizontalAlignment="Left" VerticalAlignment="Stretch" FontFamily="Segoe MDL2 Assets" Background="{x:Null}" FontSize="22" Padding="0,0,0,0" Margin="0,0,0,0" Width="39" Grid.Column="0" />
+                <ProgressRing x:Name="p_ring" Grid.Column="10" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsActive="True"/>
+            </Grid>
+            <Grid x:Name="devnote" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300" Height="200" Background="Red" BorderThickness="2,2,2,2" Canvas.ZIndex="1" Visibility="Collapsed">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="48"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="48"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock HorizontalAlignment="Stretch" Text="Dev Notes" TextWrapping="Wrap" VerticalAlignment="Center" TextAlignment="Center" FontSize="18"/>
+                    <Button x:Name="btnCloseDev" Content="&#xE711;" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" FontFamily="Segoe MDL2 Assets" Background="Transparent" FontSize="18"/>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <ScrollViewer x:Name="myScrollView_3" IsTabStop="True" VerticalScrollBarVisibility="Auto" Margin="10,10,10,10" BorderBrush="#FFA0A0A0">
+                        <TextBlock x:Name="txtDevText" Margin="0" TextWrapping="Wrap" Text="TEXT" VerticalAlignment="Top" FontSize="18"/>
+                    </ScrollViewer>
+                </Grid>
+            </Grid>
+            <Pivot x:Name="_pivot" Grid.Row="1">
+                <PivotItem Header="Local Authority">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="150"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Text="Enter Town or City Name" VerticalAlignment="Center" Margin="10,0,0,0" />
+                            <TextBlock Text="or, choose from a local authority" VerticalAlignment="Center" Margin="10,0,0,0" Grid.Row="2" />
+                            <ComboBox x:Name="cmbLocalAuthority" HorizontalAlignment="Stretch" Margin="10,0,10,0" VerticalAlignment="Center" BorderThickness="1,1,1,1" Grid.Row="3"/>
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="50"/>
+                                    <ColumnDefinition Width="50"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBox x:Name="txtSearchBox" Margin="10,0,10,0" Text="" VerticalAlignment="Center" PlaceholderText="Enter Town/City Name" BorderThickness="1,1,1,1" Grid.Row="1"/>
+                                <Button x:Name="btnSearch" Content="&#xE721;" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" Height="32" BorderBrush="White" Padding="1,1,1,1" BorderThickness="1,1,1,1" Width="32" Background="#0CFFFFFF" Grid.Row="1" Grid.Column="1"/>
+                                <Button x:Name="btnLocation" Content="&#xEC43;" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" Height="32" BorderBrush="White" Padding="1,1,1,1" BorderThickness="1,1,1,1" Width="32" Background="#0CFFFFFF" Grid.Row="1" Grid.Column="2" Visibility="Collapsed"/>
+                            </Grid>
+                        </Grid>
+                        <Grid x:Name="_warning" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="250" Height="100" Background="Red" Canvas.ZIndex="1">
+                            <TextBlock HorizontalAlignment="Center" Text="No Location Found" TextWrapping="Wrap" VerticalAlignment="Bottom" Foreground="White" FontSize="24" Margin="0,0,0,10"/>
+                            <Button x:Name="btnCloseWarning" Content="&#xE711;" HorizontalAlignment="Right" Margin="0,10,10,0" VerticalAlignment="Top" FontFamily="Segoe MDL2 Assets" Height="32" BorderBrush="{x:Null}" Padding="1,1,1,1" BorderThickness="1,1,1,1" Width="32" Background="#0CFFFFFF" Foreground="White" FontSize="22"/>
+                        </Grid>
+                        <ListView x:Name="lstPubs" HorizontalAlignment="Stretch" Margin="10,10,10,10" VerticalAlignment="Stretch" Grid.Row="2"/>
+                    </Grid>
+                </PivotItem>
+                <PivotItem Header="Information">
+                    <Grid>
+                        <Pivot x:Name="_info">
+                            <PivotItem Header="Pub / Night Club">
+                                <!--Map & Pub/Night Club-->
+                                <Grid x:Name="_grid_info">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <my:MapControl x:Name="MyMap" HorizontalAlignment="Stretch" Margin="10,10,10,10" VerticalAlignment="Stretch" MapServiceToken="3yqdYaTlL5TmJZyd5wXg~x_rpxxJjlMrfyPIg4wTj-g~Av41X-LDybWRQ90ZhZA7fteGzOSOhbEjTb1KFAXcKmyN7zx8eLFhyN8ageSvole9" Grid.RowSpan="2"/>
+                                    <Grid Grid.Row="2">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock x:Name="txtPubName" HorizontalAlignment="Left" Margin="10,10,0,0" Text="Pub Name" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="22"/>
+                                        <TextBlock x:Name="txtPubAddress" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" Text="Pub Address" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="22"/>
+                                    </Grid>
+                                </Grid>
+                            </PivotItem>
+                            <PivotItem Header="Nearby Bus Stops">
+                                <!--Nearby bus stops-->
+                                <Grid>
+                                    <TextBlock Text="This Feature Will Be Coming Soon!" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="24" />
+                                </Grid>
+                            </PivotItem>
+                        </Pivot>
+
+                    </Grid>
+                </PivotItem>
+                <PivotItem x:Name="_p_info" Header="About Open Pubs">
+                    <!--About the app-->
+                    <Grid x:Name="gINFO" Margin="1,1,1,1" Background="Black" BorderBrush="White" BorderThickness="1,1,1,1" Visibility="Visible" Grid.RowSpan="9" Grid.Row="0" Canvas.ZIndex="1" CornerRadius="5,5,5,5">
+                        <ScrollViewer x:Name="myScrollView_1" IsTabStop="True" VerticalScrollBarVisibility="Auto" Margin="10,10,10,10" BorderBrush="#FFA0A0A0">
+                            <TextBlock x:Name="txtAboutText" Margin="0" TextWrapping="Wrap" Text="TEXT" VerticalAlignment="Top" FontSize="20" Foreground="White" />
+                        </ScrollViewer>
+                    </Grid>
+                </PivotItem>
+                <PivotItem x:Name="_p_licence" Header="3rd Party Licence">
+                    <!--3rd Party Licences-->
+                    <Grid Margin="1,1,1,1" Background="Black" BorderBrush="White" BorderThickness="1,1,1,1" Visibility="Visible" Grid.RowSpan="9" Grid.Row="0" Canvas.ZIndex="1" CornerRadius="5,5,5,5">
+                        <ScrollViewer x:Name="myScrollView_2" IsTabStop="True" VerticalScrollBarVisibility="Auto" Margin="10,10,10,10" BorderBrush="#FFA0A0A0">
+                            <TextBlock x:Name="txtInfoText" Margin="0" TextWrapping="Wrap" Text="TEXT" VerticalAlignment="Top" FontSize="20" Foreground="White" />
+                        </ScrollViewer>
+                    </Grid>
+                </PivotItem>
+            </Pivot>
+            <Grid Grid.Row="2">
+                <!--App Name & Version Number-->
+                <TextBlock x:Name="txtVersionApp" HorizontalAlignment="Stretch" Text="App Name and Version Number" TextWrapping="Wrap" VerticalAlignment="Center" Margin="10,0,10,0" TextAlignment="Center" FontSize="18"/>
+            </Grid>
+        </Grid>
+    </SplitView>
 </Page>
