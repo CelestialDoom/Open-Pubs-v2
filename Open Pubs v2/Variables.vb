@@ -61,4 +61,10 @@ Module Variables
     Public Latitude_Value As Double
     Public Longitude_Value As Double
 
+    Public BusStops(60) As String
+
+    Public Function LoadBusStops()
+        Return BusStops
+    End Function
+
 End Module

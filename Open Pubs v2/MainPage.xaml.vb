@@ -7,9 +7,9 @@ Imports Windows.Devices.Geolocation
 Imports Windows.Phone.UI.Input
 Imports Windows.Services.Maps
 Imports Windows.Storage.Streams
-Imports Windows.UI.Core
 Imports Windows.UI.Popups
 Imports Windows.UI.Xaml.Controls.Maps
+
 ''' <summary>
 ''' An empty page that can be used on its own or navigated to within a Frame.
 ''' </summary>
@@ -46,7 +46,6 @@ Public NotInheritable Class MainPage
             Application.Current.Exit()
         End If
     End Function
-
 
     Private Sub MainPage_Loaded(sender As Object, e As RoutedEventArgs) Handles Me.Loaded
         Dim platformFamily = Windows.System.Profile.AnalyticsInfo.VersionInfo.DeviceFamily
@@ -92,7 +91,6 @@ Public NotInheritable Class MainPage
         PubLatitude.Clear()
         PubLongitude.Clear()
         PubLocalAuthority.Clear()
-
 
         For Each line In CsvReader.ReadFromText(csv)
             PubName.Add(line(0))
@@ -140,13 +138,12 @@ Public NotInheritable Class MainPage
 
             ReverseGeocode(Latitude_Value, Longitude_Value)
 
-
             'GetSunriseSunsetTimes(Latitude_Value.ToString, Longitude_Value.ToString)
 
             'Unauthorized
         Catch eu As System.UnauthorizedAccessException
 
-            _warning.Visibility = Visibility.Visible
+            '_warning.Visibility = Visibility.Visible
 
             'Cancelled
         Catch et As TaskCanceledException
@@ -269,7 +266,23 @@ Public NotInheritable Class MainPage
             _pivot.SelectedIndex = 1
             _info.SelectedIndex = 0
             _grid_info.Visibility = Visibility.Visible
+            GetNearBy(LatitudeToDouble, LongitudeToDouble)
         End If
+    End Sub
+
+    Private Async Sub GetNearBy(ByVal latitude As Double, ByVal longitude As Double)
+        Dim TotalStops As Integer
+        Dim http = New HttpClient()
+        Dim url = String.Format("https://transportapi.com/v3/uk/places.json?app_id=76b64c09&app_key=ede8b69b882c7db5c2da9ef43f2138e8&lat=" & latitude & "&lon=" & longitude & "&type=bus_stop")
+        Dim response = Await http.GetAsync(url)
+        Dim result = Await response.Content.ReadAsStringAsync()
+        Dim TestObject As NearBy = Global.Newtonsoft.Json.JsonConvert.DeserializeObject(Of NearBy)(result.ToString)
+        TotalStops = TestObject.member.Length - 1
+        ReDim BusStops(TotalStops)
+        For a = 0 To TotalStops
+            BusStops(a) = TestObject.member.ElementAt(a).name
+        Next
+        lstStops.ItemsSource = LoadBusStops()
     End Sub
 
     Private Sub BtnMenu_Click(sender As Object, e As RoutedEventArgs) Handles btnMenu.Click
@@ -431,4 +444,5 @@ Public NotInheritable Class MainPage
     Private Sub btnCloseWarning_Click(sender As Object, e As RoutedEventArgs) Handles btnCloseWarning.Click
         _warning.Visibility = Visibility.Collapsed
     End Sub
+
 End Class

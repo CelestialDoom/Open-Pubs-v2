@@ -1,4 +1,5 @@
 ﻿Module JSON
+
     'JSON
     Public Class Currency
         Public Property code As String
@@ -43,4 +44,26 @@
     End Class
 
     'json
+
+    'json_nearest_bus_stops
+    Public Class Member
+        Public Property type As String
+        Public Property name As String
+        Public Property description As String
+        Public Property latitude As Double
+        Public Property longitude As Double
+        Public Property accuracy As Integer
+        Public Property atcocode As String
+        Public Property distance As Double
+    End Class
+
+    Public Class NearBy
+        Public Property request_time As DateTime
+        Public Property source As String
+        Public Property acknowledgements As String
+        Public Property member As Member()
+    End Class
+
+    'json_nearest_bus_stops
+
 End Module
